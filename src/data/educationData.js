@@ -8,21 +8,21 @@ export const educationData = [
     },
     {
         id: 2,
-        institution: 'Faculté des Sciences Mathématiques, Physiques et Naturelles de Tunis',
+        institution: 'FSMPNT',
         course: 'Doctorat en chimie, Chimie inorganique',
         startYear: '2014',
         endYear: '2018'
     },
     {
         id: 3,
-        institution: 'Faculté des Sciences Mathématiques, Physiques et Naturelles de Tunis',
+        institution: 'FSMPNT',
         course: "Mastère de recherche en Chimie de l'état solide",
         startYear: '2012',
         endYear: '2014'
     },
     {
         id: 3,
-        institution: 'Faculté des Sciences Mathématiques, Physiques et Naturelles de Tunis',
+        institution: 'FSMPNT',
         course: "Licence fondamentale en Chimie, Chimie inorganique",
         startYear: '2009',
         endYear: '2012'

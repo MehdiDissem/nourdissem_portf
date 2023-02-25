@@ -15,7 +15,7 @@ export const experienceData = [
     },
     {
         id: 3,
-        company: 'Faculté des Sciences Mathématiques, Physiques et Naturelles de Tunis',
+        company: 'FSMPNT',
         jobtitle: 'Doctorante chercheuse',
         startYear: '2014',
         endYear: '2018'
