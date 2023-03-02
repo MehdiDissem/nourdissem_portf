@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
+import emailjs from "@emailjs/browser";
 import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
@@ -29,7 +30,7 @@ import './Contacts.css';
 
 function Contacts() {
     const [open, setOpen] = useState(false);
-
+    const form = useRef();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -129,6 +130,7 @@ function Contacts() {
 
     const classes = useStyles();
 
+
     const handleContactForm = (e) => {
         e.preventDefault();
 
@@ -160,6 +162,34 @@ function Contacts() {
         }
     };
 
+
+    const responseData = {
+        from_name: name,
+        // email: email,
+        message: message,
+    }
+
+
+      
+        const sendEmail = (e) => {
+          e.preventDefault();
+      
+          emailjs
+            .sendForm(
+              "service_78y69fk",
+              "template_iu344hw",
+              form.current, "C6wIMZooGI-c6Wdeu"
+            )
+            .then(
+              (result) => {
+                console.log(result.text);
+                console.log("message sent");
+              },
+              (error) => {
+                console.log("this is the rror",error.text);
+              }
+            )}
+
     return (
         <div
             className='contacts'
@@ -169,8 +199,8 @@ function Contacts() {
             <div className='contacts--container'>
                 <h1 style={{ color: theme.primary }}>Contacts</h1>
                 <div className='contacts-body'>
-                    <div className='contacts-form'>
-                        <form onSubmit={handleContactForm}>
+                    <form className='contacts-form' ref={form}>
+                        <form onSubmit={sendEmail}>
                             <div className='input-container'>
                                 <label htmlFor='Name' className={classes.label}>
                                     Nom
@@ -278,7 +308,7 @@ function Contacts() {
                                 message={errMsg}
                             />
                         </Snackbar>
-                    </div>
+                    </form>
 
                     <div className='contacts-details'>
                         <a
