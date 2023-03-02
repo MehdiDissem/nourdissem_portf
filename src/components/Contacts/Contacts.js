@@ -163,11 +163,11 @@ function Contacts() {
     };
 
 
-    const responseData = {
-        from_name: name,
-        // email: email,
-        message: message,
-    }
+    // const responseData = {
+    //     from_name: name,
+    //     // email: email,
+    //     message: message,
+    // }
 
 
       
@@ -182,11 +182,18 @@ function Contacts() {
             )
             .then(
               (result) => {
-                console.log(result.text);
-                console.log("message sent");
+                console.log('success');
+                setSuccess(true);
+                setErrMsg('');
+
+                setName('');
+                setEmail('');
+                setMessage('');
+                setOpen(false);
               },
               (error) => {
-                console.log("this is the rror",error.text);
+                setErrMsg('Invalid email');
+                setOpen(true);
               }
             )}
 
@@ -199,8 +206,8 @@ function Contacts() {
             <div className='contacts--container'>
                 <h1 style={{ color: theme.primary }}>Contacts</h1>
                 <div className='contacts-body'>
-                    <form className='contacts-form' ref={form}>
-                        <form onSubmit={sendEmail}>
+                    <div className='contacts-form'>
+                        <form onSubmit={sendEmail} ref={form}>
                             <div className='input-container'>
                                 <label htmlFor='Name' className={classes.label}>
                                     Nom
@@ -210,7 +217,7 @@ function Contacts() {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     type='text'
-                                    name='Name'
+                                    name="from_name"
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
@@ -226,7 +233,7 @@ function Contacts() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type='email'
-                                    name='Email'
+                                    name="email"
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
@@ -242,7 +249,7 @@ function Contacts() {
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     type='text'
-                                    name='Message'
+                                    name='message'
                                     className={`form-message ${classes.message}`}
                                 />
                             </div>
@@ -308,7 +315,7 @@ function Contacts() {
                                 message={errMsg}
                             />
                         </Snackbar>
-                    </form>
+                    </div>
 
                     <div className='contacts-details'>
                         <a
